@@ -4,9 +4,9 @@ import sqlite3
 import os
 from datetime import datetime
 
-# БЕРЁМ ТОКЕНЫ ИЗ ПЕРЕМЕННЫХ ОКРУЖЕНИЯ (важно для Render)
-TELEGRAM_TOKEN = os.environ.get("8532318798:AAHaKxRHgstALFaY5ZBYKVu9Gtl0GT0yoCk")
-AI_API_KEY = os.environ.get("sk-c0979d4293424f08a7ba9ffef75b98b4")
+# ТОКЕНЫ ВПИСЫВАЕМ ПРЯМО (или через переменные окружения)
+TELEGRAM_TOKEN = "8532318798:AAHaKxRHgstALFaY5ZBYKVu9Gtl0GT0yoCk"
+AI_API_KEY = "sk-c0979d4293424f08a7ba9ffef75b98b4"
 
 bot = telebot.TeleBot(TELEGRAM_TOKEN)
 
@@ -38,7 +38,7 @@ def get_history(user_id, limit=10):
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.reply_to(message, "Привет! Я бот на сервере и работаю 24/7! 🚀")
+    bot.reply_to(message, "Привет! Я бот с ИИ и памятью! 🚀")
 
 @bot.message_handler(func=lambda message: True)
 def ai_chat(message):
@@ -65,5 +65,5 @@ def ai_chat(message):
         bot.reply_to(message, f"Ошибка: {e}")
 
 init_db()
-print("✅ Бот запущен на сервере!")
+print("✅ Бот запущен!")
 bot.infinity_polling()
